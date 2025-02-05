@@ -1,10 +1,9 @@
-package com.devsuperior.dslist.services.user;
+package com.maxDev.java.services.user;
 
-
-import com.devsuperior.dslist.dto.user.UserDTO;
-import com.devsuperior.dslist.entities.User;
-import com.devsuperior.dslist.exceptions.EmailAlreadyExistsException;
-import com.devsuperior.dslist.repositories.user.UserRepository;
+import com.maxDev.java.dto.user.UserDTO;
+import com.maxDev.java.entities.User;
+import com.maxDev.java.exceptions.EmailAlreadyExistsException;
+import com.maxDev.java.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,8 +36,7 @@ public class UserService {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new EmailAlreadyExistsException("Email já cadastrado!");
         }
-        return userRepository.save(user);
-    }
+        return userRepository.save(user);    }
 
 
 

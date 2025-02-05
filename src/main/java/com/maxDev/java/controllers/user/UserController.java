@@ -1,8 +1,9 @@
-package com.devsuperior.dslist.controllers.user;
+package com.maxDev.java.controllers.user;
 
-import com.devsuperior.dslist.dto.user.UserDTO;
-import com.devsuperior.dslist.entities.User;
-import com.devsuperior.dslist.services.user.UserService;
+
+import com.maxDev.java.dto.user.UserDTO;
+import com.maxDev.java.entities.User;
+import com.maxDev.java.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

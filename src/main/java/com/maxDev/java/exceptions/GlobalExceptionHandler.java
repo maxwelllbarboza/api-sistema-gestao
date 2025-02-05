@@ -1,4 +1,4 @@
-package com.devsuperior.dslist.exceptions;
+package com.maxDev.java.exceptions;
 
 
 import org.springframework.http.HttpStatus;

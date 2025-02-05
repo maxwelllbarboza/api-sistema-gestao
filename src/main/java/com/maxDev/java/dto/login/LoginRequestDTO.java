@@ -1,4 +1,3 @@
 package com.maxDev.java.dto.login;
 
-public class LoginDTO {
-}
+public record LoginRequestDTO(String email, String password) {}

@@ -1,20 +1,22 @@
-package com.devsuperior.dslist.dto.user;
+package com.maxDev.java.dto.user;
 
-import com.devsuperior.dslist.entities.User;
+import com.maxDev.java.entities.User;
 import org.springframework.beans.BeanUtils;
 
 public class UserDTO {
 
     private Long id;
-
     private String name;
     private String email;
+
 
     public UserDTO(){
     }
 
     public UserDTO(User entity){
-        BeanUtils.copyProperties(entity, this);
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.email = entity.getEmail();
     }
 
     public Long getId() {
@@ -37,7 +39,7 @@ public class UserDTO {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
+
+
 }
