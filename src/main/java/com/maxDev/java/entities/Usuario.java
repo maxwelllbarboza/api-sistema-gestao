@@ -1,7 +1,11 @@
 package com.maxDev.java.entities;
 
+
+import com.maxDev.java.enums.RoleEnum;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,35 +13,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-
-@Entity
-@Table(name = "tb_user")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class User implements UserDetails {
+@Entity
+@Table(name = "tb_user")
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
+
     private String name;
 
-    @Column(nullable = true, unique = true)
+
     private String email;
 
-    @Column(nullable = true)
+
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
-    private UserRole role;
 
+    private RoleEnum role;
 
-    public User(String name, String email, String password, UserRole role) {
+    public Usuario(String name, String email, String password, RoleEnum role) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -46,15 +45,26 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == RoleEnum.ADMIN) {
+            return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_USER")
+            );
+        }
+        return List.of(
+                new SimpleGrantedAuthority("ROLE_USER")
+        );
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return this.email;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
